@@ -1,27 +1,6 @@
 #include<stdio.h>
-//#include<header.h>
+#include "Header.h"
 
-struct monthlyRate{
-	int month;
-	double credit;
-	double interest;
-	double redemption;
-};
-
-double fixCosts = 1.5;
-
-double getCreditGross(int value){
-	double returnValue = (value / (1 - (fixCosts / 100)));
-	return (returnValue);
-}
-
-double getInterest(double credit, double interest){
-	return ((interest / 100) / 12) * credit;
-}
-
-double getRedemption(double credit, double redemption){
-	return ((redemption / 100) / 12) * credit;
-}
 
 void computeInterest(double value, double interest, double redemption, int period){
 	double creditGross = getCreditGross(value);
@@ -30,6 +9,8 @@ void computeInterest(double value, double interest, double redemption, int perio
 	double firstInterest = getInterest(creditGross, interest);
 	double monthlyRate = firstInterest + firstRedemption;
 	
+	printf("\nEs wurde eine monatliche Rate von %lf EURO berechnet.", monthlyRate);
+
 	struct monthlyRate rates[1024];
 
 	for (int i = 0; i < period; i++){
